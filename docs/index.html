@@ -1,0 +1,78 @@
+<!doctype html>
+
+<style>
+    html {
+        background: orangered;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    body {
+        font-family: system-ui;
+        color: bisque;
+    }
+
+    .title {
+        margin-bottom: 0;
+    }
+
+    .source-link {
+        color: pink;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .target {
+        display: block;
+        font-size: 70px;
+        background-color: var(--bg-color);
+        color: var(--color);
+        background-image: paint(perlin-noise);
+
+        width: 400px;
+        height: 400px;
+        width: 50vw;
+        height: 50vh;
+        margin-bottom: 20px;
+
+        --perlin-color: #ecee81;
+        --perlin-bg-color: tomato;
+        --perlin-line-width: 1;
+        --perlin-x: 5;
+        --perlin-y: 5;
+        --perlin-z: 0;
+    }
+
+</style>
+
+<h1 class="title">Houdini Perlin Noise Paint worklet</h1>
+<a class="source-link" href="#">Source code</a>
+
+<textarea class="target"></textarea>
+
+<input type="color" id="bg-color" value="#ff6347"/>
+<input type="color" id="color" value="#ecee81"/>
+
+<script>
+    CSS.paintWorklet.addModule('worklet.js');
+
+    let tick = 0;
+    const target = document.querySelector('.target');
+    requestAnimationFrame(function frame() {
+        tick++;
+        target.style.setProperty('--perlin-z', tick);
+        requestAnimationFrame(frame);
+    });
+
+    const bgColorInput = document.querySelector('#bg-color');
+    const colorInput = document.querySelector('#color');
+    bgColorInput.addEventListener('input', (e) => {
+        target.style.setProperty('--perlin-bg-color', e.currentTarget.value);
+    });
+    colorInput.addEventListener('input', (e) => {
+        target.style.setProperty('--perlin-color', e.currentTarget.value);
+    });
+</script>
