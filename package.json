@@ -1,0 +1,40 @@
+{
+  "name": "houdini-perlin-noise",
+  "version": "0.0.1",
+  "description": "CSS Houdini Perlin Noise",
+  "source": "src/index.js",
+  "main": "dist/worklet.js",
+  "scripts": {
+    "build": "mkdir dist 2>/dev/null; uglifyjs src/worklet.js -o dist/worklet.js ; cp src/index.html dist/index.html",
+    "prepublish": "npm run build",
+    "start": "npm run dev",
+    "dev": "npm run build && npx live-server dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mefody/houdini-perlin-noise.git"
+  },
+  "keywords": [
+    "houdini",
+    "css-houdini",
+    "css",
+    "paintworklet",
+    "paint",
+    "worklet",
+    "background"
+  ],
+  "author": {
+    "name": "Nikita Dubko",
+    "email": "n.a.dubko@gmail.com",
+    "twitter": "@dark_mefody",
+    "web": "https://mefody.dev/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mefody/houdini-perlin-noise/issues"
+  },
+  "homepage": "https://github.com/mefody/houdini-perlin-noise#readme",
+  "devDependencies": {
+    "uglify-js": "^3.14.3"
+  }
+}
